@@ -151,15 +151,9 @@ footer{text-align:center;padding:30px 18px 40px;color:var(--mut);font-size:.82re
     <div class="card"><span class="tag">Elite</span><h3>Leg Elite</h3><div class="price">₹1500</div><ul><li>Home service &amp; cone charged separately</li></ul></div>
   </div>
 
-  <h3 class="sec">Cone Details</h3>
-  <div class="tw"><table>
-    <tr><th>Cones</th><th>Free with it</th><th>Price</th></tr>
-    <tr><td>6 cones</td><td>1 aftercare oil + 1 aftercare balm</td><td><b>₹250</b></td></tr>
-    <tr><td>8 cones <small>(Basic package)</small></td><td>1 oil + 2 balm</td><td><b>₹335</b></td></tr>
-    <tr><td>10 cones <small>(Elite package)</small></td><td>2 oil + 2 balm</td><td><b>₹420</b></td></tr>
-    <tr><td>12 cones <small>(Premium package)</small></td><td>3 oil + 2 balm</td><td><b>₹500</b></td></tr>
-  </table></div>
-  <p class="note">Cones are purchased from a dealer, so please choose the recommended cone set for your package.</p>
+  <h3 class="sec">Bridal Cone Kits</h3>
+  <div class="cards" id="kits"></div>
+  <p class="note"><b>Single cone not available, please select from the kits.</b> Every kit comes with 1 oil + 1 balm.</p>
 
   <h3 class="sec">Home Service</h3>
   <div class="cards"><div class="card"><div class="price">₹200</div><h3>Fixed price for local areas</h3><ul><li>Charged for every time you book home service</li><li>Outside Madurai / very long distance: separate charges, please DM on Instagram to ask</li></ul></div></div>
@@ -232,6 +226,16 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key
 let sx=0;lb.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
 lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)step(d<0?1:-1)});
 $('yr').textContent=new Date().getFullYear();
+(function(){const box=$('kits');
+const K=[ // price = MRP (cones x 35 + oil 35 + balm 35)
+ {n:'Starter Kit',t:'Starter',c:3,p:175},
+ {n:'Bridal Kit',t:'Best Selling',c:6,p:280,s:1},
+ {n:'Classic Kit',t:'Classic',c:8,p:350},
+ {n:'Pro Kit',t:'Pro',c:10,p:420},
+ {n:'Mega Kit',t:'Mega',c:12,p:490}];
+K.forEach(k=>{const c=document.createElement('div');c.className='card'+(k.s?' star':'');
+c.innerHTML='<span class="tag">'+k.t+'</span><h3>'+k.n+'</h3><div class="price">₹'+k.p+'</div><ul><li>'+k.c+' Cones</li><li>1 Oil + 1 Balm included</li><li>Packed in a transparent cover</li></ul>';
+box.appendChild(c)})})();
 pick(CATS[0]);
 </script>
 </body>
